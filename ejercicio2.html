@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Proyecto Examen#2">
+    <meta name="keywords" content="Programación III, Página Web">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos_ejercicios.css">
+    <script src="https://kit.fontawesome.com/445dcc085c.js" crossorigin="anonymous"></script>
+    <title>Ejercicio #2</title>
+</head> <!--Fin head-->
+
+<!-- BODY -->
+
+<body>
+    <header>
+        <div class="header-box">
+
+            <div class="titulo">
+                <h1>Ejercicio Palíndromo </h1>
+            </div>
+            
+            
+        </div>
+    </header> <!--Fin header-->
+
+    <section>
+        <div class="section-box">
+            
+            <div class="articulo">
+                <article>
+                    <h2>Ejercicio 2 </h2>
+                    <p>Una palabra Palíndromo es aquella
+                        que al leerse de izquierda a derecha o de derecha a izquierda son iguales. 
+                        Por ejemplo, la palabra OSO que al leerse tanto de izquierda a derecha como de derecha a izquierda se lee
+                        la misma palabra.
+                    </p>
+
+                </article> <!--Fin article-->
+            </div>
+
+            <div class="formulario" style="margin-top: 60px;">
+
+                <br><h2>Verifica un Palíndromo</h2>
+
+                <form action="" name="formulario">
+            
+                    <input type="text" name="cadena" placeholder="Ingrese una Cadena" minlength="3" required> <br>
+
+                    <label for="resultados">Resultados</label> <br>
+                    <textarea name="resultados" readonly></textarea><br>
+
+
+                    <input type="button" value="Verificar Palíndromo" class="boton" onclick="verificar()">
+                    <input type="reset" value="Limpiar" class="boton" onclick="reset()">
+
+                </form>
+   
+            </div><!--Fin formulario-->
+
+            <script type="text/javascript">
+
+                function verificar(){
+                    var cadena;
+                    var cadenaMin;
+                    var palindromo;
+                    var resultado;
+                    var re = /[^A-Za-z0-9]/g;
+
+                    if(document.formulario.cadena.value == ""){
+                        alert("Error!. Existen datos sin completar. Intentelo de nuevo");
+                    }else if(document.formulario.cadena.value.length < 3){
+                        alert("Ingrese una palabra con almenos 3 caracteres");
+                    }else{
+                        cadena = document.formulario.cadena.value;
+
+                        cadenaMin = cadena.toLowerCase().replace(re, '');
+                        palindromo = cadenaMin.split('').reverse().join('');
+
+                        if(cadenaMin == palindromo){
+                            alert('Es Palíndromo!')
+                            resultado = "La palabra " +cadena.toUpperCase()+ " escrito al revés es '" +palindromo.toUpperCase()+"' por lo tanto "+cadena.toUpperCase()+" es un palabra tipo Palíndromo";
+                        }else{
+                            alert('No es Palíndromo :/')
+                            resultado = "La palabra " +cadena.toUpperCase()+ " escrito al revés es '" +palindromo.toUpperCase()+"' por lo tanto "+cadena.toUpperCase()+" no es un palabra tipo Palíndromo";
+                        }
+                        
+                        document.formulario.resultados.value = resultado;
+                        document.formulario.cadena.value = "";
+                    }
+                }
+            
+            
+            </script>
+            
+
+        </div> <!--Fin section-box-->
+    </section> <!--Fin section-->
+
+    <footer>
+        <label for="check" class="checkbtn"> 
+            <i class="fa-solid fa-bars"></i> 
+        </label>
+        <input type="checkbox" id="check">
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio </a> </li>
+                <li><a href="ejercicio1.html">Ejercicio #1</a></li>
+                <li><a href="ejercicio3.html">Ejercicio #3</a></li>
+                <li><a href="ejercicio4.html">Ejercicio #4</a></li>
+            </ul>
+        </nav> <!--Fin nav-->
+
+        <div class="footer-box">
+            <p>| <i class="fa-solid fa-envelope"></i> brad.ralvarado@gmail.com  |<br>| <i class="fa-solid fa-phone"></i> +506 8474-5528  |</p>
+        </div>
+    </footer> <!--Fin footer--> 
+    
+</body><!--Fin BODY-->
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Proyecto Examen#2">
+    <meta name="keywords" content="Programación III, Página Web">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos_ejercicios.css">
+    <script src="https://kit.fontawesome.com/445dcc085c.js" crossorigin="anonymous"></script>
+    <title>Ejercicio #3</title>
+</head> <!--Fin head-->
+
+<!-- BODY -->
+
+<body>
+    <header>
+        <div class="header-box">
+
+            <div class="titulo">
+                <h1> Ejercicio Arreglos</h1>
+            </div>
+            
+            
+        </div>
+    </header> <!--Fin header-->
+
+    <section>
+        <div class="section-box">
+            
+            <div class="articulo">
+                <article>
+                    <h2>Ejercicio 3</h2>
+                    <p>Este programa permite el ingreso de
+                        numeros hasta que el usuario desee. Para ingresar un número debe ingresarlo en el
+                        campo Número y luego presionar el botón Ingresar Datos, al presionar este botón los
+                        numeros serán almacenados en un vector, el cual se irá visualizando en el campo de Vector
+                        ingresado. Para ver el vector ordenado de forma ascendente debe seleccionar la opción
+                        ASC y luego presionar el botón Ordenar Vector, para ver el vector ordenando de forma
+                        descendente debe seleccionar la opción DSC y luego presionar el botón Ordenar Vector.
+                    </p>
+
+                </article> <!--Fin article-->
+            </div>
+
+            <div class="formulario">
+
+                <br><h2>Ingrese los Datos</h2>
+
+                <form action="" name="calculadora">
+            
+                    <input type="number" name="numero" placeholder="Número" required> <br>
+
+                    <label for="vector">Vectores Ingresados</label>
+                    <textarea name="vector" placeholder="Vectores Ingresados: " readonly></textarea> <br>
+
+                    <label for="estadisticas">Estadísticas</label>
+                    <textarea name="estadisticas" placeholder="Estadísticas" readonly></textarea> <br>
+
+                    <label for="vOrdenado">Vectores Ordenados</label>
+                    <textarea name="vOrdenado" placeholder="Vector Ordenado" readonly></textarea> <br>
+
+                    <input type="radio" name="orden" value="ASC" class="radio" checked>  <label for="orden">ASC</label>
+                    <input type="radio" name="orden" value="DSC" class="radio"> <label for="orden">DSC</label>
+
+                    <input type="button" value="Ingresar Datos" class="boton" onclick="ingresar_datos()">
+                    <input type="button" value="Ordenar Vectores" class="boton" onclick="ordenar_vectores()">
+                    <input type="reset" value="Limpiar" class="boton" onclick="reset()">
+
+                </form>
+   
+            </div><!--Fin formulario-->
+
+            <script type="text/javascript">
+
+              var numero = new Array(50);
+              var contador = 0;
+              var acumulador = 0; 
+              var promedio;
+              var estadisticas;
+              
+
+                function ingresar_datos(){
+                    
+                    if(document.calculadora.numero.value == "")
+                    {
+                        alert("Error!. Existen datos sin completar. Intentelo de nuevo");
+                    }
+                    else
+                    {
+                        numero[contador] = parseInt(document.calculadora.numero.value);
+                        document.calculadora.vector.value = document.calculadora.vector.value +"  ->" + numero[contador];
+                        contador++;
+
+                        //calculos
+                        acumulador += numero[contador-1];
+                        promedio = acumulador/contador;
+                        
+    
+                        estadisticas = "Cantidad de numeros ingresados:  "+contador+"\nSumatoria de los números:  "+acumulador+"\nPromedio de los números:  "+promedio.toFixed(2);
+                        
+                        document.calculadora.estadisticas.value = estadisticas;
+                        document.calculadora.numero.value = "";
+                    }
+                }
+
+                function ordenar_vectores(){
+                    var orden;
+                    
+                    if(document.calculadora.orden.value == 'ASC'){
+                    orden = numero.sort((a, b) => (a-b));
+                    } else{
+                    orden = numero.sort((a, b) => (b-a));
+                    }
+                    document.calculadora.vOrdenado.value = orden;
+                }
+
+            
+            </script>
+            
+
+        </div> <!--Fin section-box-->
+    </section> <!--Fin section-->
+
+    <footer>
+        <label for="check" class="checkbtn"> 
+            <i class="fa-solid fa-bars"></i> 
+        </label>
+        <input type="checkbox" id="check">
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio </a> </li>
+                <li><a href="ejercicio1.html">Ejercicio #1</a></li>
+                <li><a href="ejercicio2.html">Ejercicio #2</a></li>
+                <li><a href="ejercicio4.html">Ejercicio #4</a></li>
+            </ul>
+        </nav> <!--Fin nav-->
+
+        <div class="footer-box">
+            <p>| <i class="fa-solid fa-envelope"></i> brad.ralvarado@gmail.com  |<br>| <i class="fa-solid fa-phone"></i> +506 8474-5528  |</p>
+        </div>
+    </footer> <!--Fin footer--> 
+    
+</body><!--Fin BODY-->
+
+</html>

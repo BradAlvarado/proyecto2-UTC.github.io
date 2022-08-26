@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Proyecto Examen#2">
+    <meta name="keywords" content="Programación III, Página Web">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos_ejercicios.css">
+    <script src="https://kit.fontawesome.com/445dcc085c.js" crossorigin="anonymous"></script>
+    <title>Ejercicio #1</title>
+</head> <!--Fin head-->
+
+<!-- BODY -->
+
+<body>
+    <header>
+        <div class="header-box">
+
+            <div class="titulo">
+                <h1> Ejercicio Cálculo de Notas </h1>
+            </div>
+            
+            
+        </div>
+    </header> <!--Fin header-->
+
+    <section>
+        <div class="section-box">
+            
+            <div class="articulo">
+                <article>
+                    <h2>Ejercicio 1 </h2>
+                    <p>Este ejercicio realiza el cálculo del promedio de notas y la condición de un estudiante. 
+                        Basado en el ingreso de las notas de dos exámenes.
+                    </p>
+
+                </article> <!--Fin article-->
+            </div>
+
+            <div class="formulario">
+
+                <br><h2>Ingrese los Datos</h2>
+
+                <form action="" name="calculadora">
+            
+                    <input type="text" name="cedula" placeholder="Ingrese su Cédula" required> <br>
+                    <input type="text" name="nombre" placeholder="Ingrese su Nombre" required> <br>
+                    <input type="number" name="nota1" min="0" max="100" placeholder="Ingrese la Nota #1" required> <br>
+                    <input type="number" name="nota2" min="0" max="100" placeholder="Ingrese la Nota #2" required> <br>
+
+                    <label for="resultados">Resultados</label> <br>
+                    <textarea name="resultados" readonly></textarea><br>
+
+                    <label for ="aprobados">Aprobados  </label> <input type="number" class="resultado" value="0" name="Caprobados" readonly>
+                    <input type="range" min="1" max="20"  name="aprobados" value="0" class="rango" readonly> 
+
+                    <label for ="aplazados">Aplazados  </label> <br> <input type="number" class="resultado" value="0" name="Caplazados" readonly>
+                    <input type="range" min="1" max="20"  name="aplazados" value="0" class="rango" readonly>
+
+                    <label for ="reprobados">Reprobados</label> <input type="number" class="resultado" value="0" name="Creprobados" readonly>
+                    <input type="range" min="1" max="20"  name="reprobados" value="0" class="rango" readonly>
+
+                    <input type="button" value="Calcular Promedio" class="boton" onclick="calcular()">
+                    <input type="reset" value="Limpiar" class="boton" onclick="reset()">
+
+                </form>
+   
+            </div><!--Fin formulario-->
+
+            <script type="text/javascript">
+
+                var cedula = new Array(20);
+                var nombre = new Array(20);
+                var nota1 = new Array(20);
+                var nota2 = new Array(20);
+                var promedio = new Array(20);
+                var contador = 0;
+
+                
+                function limpiar_campos(){
+                    document.calculadora.cedula.value = "";
+                    document.calculadora.nombre.value = "";
+                    document.calculadora.nota1.value = "";
+                    document.calculadora.nota2.value = "";
+                }
+
+                function calcular(){
+                    var i, resultado, aprobados = 0, aplazados = 0, reprobados = 0, condicion;
+
+                    if(document.calculadora.cedula.value == "" || document.calculadora.nombre.value == "" || document.calculadora.nota1.value == "" || document.calculadora.nota2.value == "")
+                    {
+                        alert("Error!. Existen datos sin completar. Intentelo de nuevo");
+                    }
+                    else
+                    {
+                        cedula[contador] = document.calculadora.cedula.value;
+                        nombre[contador] = document.calculadora.nombre.value;
+                        nota1[contador] = parseInt(document.calculadora.nota1.value);
+                        nota2[contador] = parseInt(document.calculadora.nota2.value);
+                        promedio[contador] = (parseInt(nota1[contador])+parseInt(nota2[contador]))/2;
+                            
+                        alert("Datos registrados satisfactoriamente!\nEstudiante " +nombre[contador]+ "\nCédula: " +cedula[contador]+ "\nNota 1: " +nota1[contador]+ "\nNota 2: " +nota2[contador]);
+                        contador++;
+
+                        for(i=0; i<contador; i++){
+
+                            if(promedio[i] >= 70){
+                                condicion = "APROBADO"
+                                aprobados++;
+                            }else if(promedio[i] >= 60 && promedio[i] < 70){
+                                condicion = "APLAZADO";
+                                aplazados++;
+                            }else{
+                                condicion = "REPROBADO";
+                                reprobados++;
+                            }
+
+                            resultado = "El estudiante " +nombre[i]+ " con N cédula " +cedula[i]+ ", se encuentra: " +condicion + " con un promedio de: " +promedio[i] + "\n\n";
+                            document.calculadora.resultados.value = resultado;
+
+                        }
+
+                        document.calculadora.aprobados.value = aprobados;
+                        document.calculadora.aplazados.value = aplazados;
+                        document.calculadora.reprobados.value = reprobados;
+
+                        document.calculadora.Caprobados.value = aprobados;
+                        document.calculadora.Caplazados.value = aplazados;
+                        document.calculadora.Creprobados.value = reprobados;
+
+                        limpiar_campos();
+                    }
+                }
+            
+            
+            </script>
+            
+
+        </div> <!--Fin section-box-->
+    </section> <!--Fin section-->
+
+    <footer>
+        <label for="check" class="checkbtn"> 
+            <i class="fa-solid fa-bars"></i> 
+        </label>
+        <input type="checkbox" id="check">
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio </a> </li>
+                <li><a href="ejercicio2.html">Ejercicio #2</a></li>
+                <li><a href="ejercicio3.html">Ejercicio #3</a></li>
+                <li><a href="ejercicio4.html">Ejercicio #4</a></li>
+            </ul>
+        </nav> <!--Fin nav-->
+
+        <div class="footer-box">
+            <p>| <i class="fa-solid fa-envelope"></i> brad.ralvarado@gmail.com  |<br>| <i class="fa-solid fa-phone"></i> +506 8474-5528  |</p>
+        </div>
+    </footer> <!--Fin footer--> 
+    
+</body><!--Fin BODY-->
+
+</html>

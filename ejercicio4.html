@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Proyecto Examen#2">
+    <meta name="keywords" content="Programación III, Página Web">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos_ejercicios.css">
+    <script src="https://kit.fontawesome.com/445dcc085c.js" crossorigin="anonymous"></script>
+    <title>Ejercicio #4</title>
+</head> <!--Fin head-->
+
+<!-- BODY -->
+
+<body>
+    <header>
+        <div class="header-box">
+
+            <div class="titulo">
+                <h1> Ejercicio Planilla</h1>
+            </div>
+            
+            
+        </div>
+    </header> <!--Fin header-->
+
+    <section>
+        <div class="section-box">
+            
+            <div class="articulo">
+                <article>
+                    <h2>Ejercicio 4</h2>
+                    <p>Este programa realiza el registro y
+                        cálculo de la planilla de una persona en vectores. Debe ingresar los campos cedula, nombre,
+                        horas laboradas y precio por hora, una vez ingresados estos campos, debe presionar el botón
+                        Ingresar Datos.
+                    </p>
+
+                </article> <!--Fin article-->
+            </div>
+
+            <div class="formulario">
+
+                <br><h2>Ingrese los Datos</h2>
+
+                <form action="" name="calculadora">
+
+                    <input name="cedula" type="text" placeholder="Cédula" required> <br>
+                    <input name="nombre" type="text" placeholder="Nombre" required> <br>
+                    <input name="horas" type="number" placeholder="Cantidad horas laboradas" min="1" max="48" required> <b>
+                    <input name="precio" type="number" placeholder="Precio x hora laborada"required> <br>
+
+                    <input type="button" class="boton" value="Calcular Planilla" onclick="Calcular()"><br>
+                    <input type="reset" class="boton" value="Limpiar Campos"> <br>
+                    
+                    <label for="reporte">Reporte</label>
+                    <textarea name="reporte" cols="33" rows="10" readonly>Cédula    Nombre         Horas     Precio       Salario</textarea> 
+
+                    <label for="estadisticas">Estadísticas</label>
+                    <textarea name="estadisticas" cols="30" rows="10" readonly></textarea>
+
+                    
+        
+                    
+        
+                </form>
+   
+            </div><!--Fin formulario-->
+
+            <script type="text/javascript">
+
+                var cedula = new Array(50);
+                var nombre = new Array(50);
+                var nHoras = new Array(50);
+                var precio = new Array(50);
+                var salario = new Array(50);
+                var contador = 0;
+
+
+                function Calcular(){
+
+                    var i, reporte, estadisticas, porcentaje1=0, porcentaje2=0, c1=0, c2=0, c3=0, promedio, total, acumulador = 0;
+
+                    if(document.calculadora.cedula.value == "" || document.calculadora.nombre.value == "" || document.calculadora.horas.value == "" ||document.calculadora.precio.value == "" )
+                    {
+                        alert("Error!. Existen datos sin completar. Intentelo de nuevo");
+                    } else{
+                        cedula[contador] = document.calculadora.cedula.value;
+                        nombre[contador] = document.calculadora.nombre.value;
+                        nHoras[contador] = document.calculadora.horas.value;
+                        precio[contador] = document.calculadora.precio.value;
+                        salario[contador] = parseInt(nHoras[contador])*parseInt(precio[contador]);
+
+                        alert("Los datos fueron incluidos exitosamente en el vector "+contador+" \nCédula: "+cedula[contador]+"\nNombre: "+nombre[contador]+"\nHoras laboradas: "+nHoras[contador] +
+                        "\nPrecio por Hora: "+precio[contador]+"\nSalario: $"+salario[contador]);
+                        reporte = "\n" + cedula[contador] + " \t "+nombre[contador]+ "  \t  "+nHoras[contador]+ "hrs \t  $"+precio[contador]+ " \t $"+salario[contador];
+                        contador++;
+                        document.calculadora.reporte.value = document.calculadora.reporte.value +  reporte;
+
+                        for(i = 0; i<contador; i++){
+
+                            if(salario[i] < 500){
+                                c1++;
+                            } else if(salario[i] >= 500 && salario[i] < 1000){
+                                c2++;
+                            }
+                            if(salario[i] > 599 && salario[i] <= 700){
+                                acumulador += salario[i];
+                                c3++;
+                            }
+                            //calculos
+                            total = c1+c2;
+                            porcentaje1 = (c1/total)*100;
+                            porcentaje2 = (c2/total)*100;
+                            promedio = acumulador/c3;
+
+                            estadisticas = "Cantidad de Registros: "+contador+"\nPorcentaje Salarios menores a $500:  "+porcentaje1.toFixed(2)+
+                            "%\nPorcentaje Salarios $500 - $1000:  "+porcentaje2.toFixed(2)+"%  \nPromedio salarios $600 - $700:  "+promedio.toFixed(1);
+                        }
+                        document.calculadora.estadisticas.value = estadisticas;
+
+                        limpiar();
+                    }
+                }
+                function limpiar(){
+                    document.calculadora.cedula.value = "";
+                    document.calculadora.nombre.value = "";
+                    document.calculadora.horas.value = "";
+                    document.calculadora.precio.value = "";
+                }
+
+            
+            </script>
+            
+
+        </div> <!--Fin section-box-->
+    </section> <!--Fin section-->
+
+    <footer>
+        <label for="check" class="checkbtn"> 
+            <i class="fa-solid fa-bars"></i> 
+        </label>
+        <input type="checkbox" id="check">
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio </a> </li>
+                <li><a href="ejercicio1.html">Ejercicio #1</a></li>
+                <li><a href="ejercicio2.html">Ejercicio #2</a></li>
+                <li><a href="ejercicio3.html">Ejercicio #3</a></li>
+            </ul>
+        </nav> <!--Fin nav-->
+
+        <div class="footer-box">
+            <p>| <i class="fa-solid fa-envelope"></i> brad.ralvarado@gmail.com  |<br>| <i class="fa-solid fa-phone"></i> +506 8474-5528  |</p>
+        </div>
+    </footer> <!--Fin footer--> 
+    
+</body><!--Fin BODY-->
+
+</html>
